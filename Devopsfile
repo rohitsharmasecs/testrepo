@@ -30,6 +30,7 @@ pipeline {
             steps {
               withSonarQubeEnv('MySonar') {
                 sh 'mvn clean package sonar:sonar'
+		sh 'mvn verify sonar:sonar -Dsonar.projectKey=rohitsharmasecs_testrepo2 -Dsonar.login=f15b867f1432b80f59adbeeaf0d7493799a6945c'
             }
           }
         }
