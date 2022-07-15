@@ -6,9 +6,9 @@ pipeline {
     stages {
         stage('Git Checkout') {
             steps {
-                git branch: 'main',
-		credentialsId: '927a0ea4-bde7-4a1e-a590-f0b87f0d7c40',
-		url: 'https://github.com/cloudtechner/testrepo.git'
+                git branch: 'rohit-test1',
+		credentialsId: '282ad0e1-9979-4077-a459-44a6aab993da',
+		url: 'https://github.com/rohitsharmasecs/testrepo.git'
             }
         }    
         stage('Compile') {
@@ -26,6 +26,20 @@ pipeline {
                 sh 'mvn test'
             }
         }
+	stage("build & SonarQube analysis") {
+            steps {
+              withSonarQubeEnv('MySonar') {
+                sh 'mvn clean package sonar:sonar'
+            }
+          }
+        }
+        stage("Quality Gate") {
+            steps {
+              timeout(time: 1, unit: 'HOURS') {
+                waitForQualityGate abortPipeline: true
+            }
+          }
+        }    
 	stage('Deploy To Environment') {
             steps {
                 sh 'echo Deployment Done'
@@ -33,3 +47,4 @@ pipeline {
         }
     }
 }
+
