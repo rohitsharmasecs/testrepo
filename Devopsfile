@@ -28,7 +28,7 @@ pipeline {
         }
 	stage("build & SonarQube analysis") {
             steps {
-		sh 'mvn verify sonar:sonar -Dsonar.projectKey=rohitsharmasecs_testrepo2 -Dsonar.login=f15b867f1432b80f59adbeeaf0d7493799a6945c -Dsonar.host.url=https://sonarcloud.io/'    
+		sh 'mvn verify sonar:sonar -Dsonar.projectKey=testrepo1 -Dsonar.login=4c4e9b9c168315a700a1b32a90e04f61931a75ec -Dsonar.host.url=https://sonarcloud.io/'    
           }
         }
         stage("Quality Gate") {
