@@ -46,9 +46,9 @@ pipeline {
        		  echo "The build number is ${env.BUILD_NUMBER}"
         	  echo "You can also use \${BUILD_NUMBER} -> ${BUILD_NUMBER}"
        		  sh 'cp /var/lib/jenkins/workspace/sonar-jenkins-pipeline/target/*.jar /var/lib/jenkins/workspace/sonar-jenkins-pipeline/target/1.0.${BUILD_NUMBER}.jar'
-       	        }
-            }
-        }
-    }
+       	       }
+          }
+     }
 }
+
 
