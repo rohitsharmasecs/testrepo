@@ -7,7 +7,7 @@ pipeline {
         stage('Git Checkout') {
             steps {
                 git branch: 'rohit-test1',
-		credentialsId: '282ad0e1-9979-4077-a459-44a6aab993da',
+		credentialsId: '68b6b783-bcdd-46a6-8831-35002d092573',
 		url: 'https://github.com/rohitsharmasecs/testrepo.git'
             }
         }    
