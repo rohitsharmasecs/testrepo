@@ -1,34 +1,15 @@
 pipeline {
-    agent any
-    tools {
-    	maven 'My_Maven'
-	}
+    agent any 
+    parameters{string(description: 'please enter tag number:', name: 'tag_number')}
+ 
     stages {
-        stage('Git Checkout') {
+        stage('deployment on another server') {
             steps {
-                git branch: 'main',
-		credentialsId: '927a0ea4-bde7-4a1e-a590-f0b87f0d7c40',
-		url: 'https://github.com/cloudtechner/testrepo.git'
-            }
-        }    
-        stage('Compile') {
-            steps {
-                sh 'mvn clean install'
-            }
-        }
-        stage('Package') {
-            steps {
-                sh 'mvn package'
-            }
-        }
-        stage('Unit Test') {
-            steps {
-                sh 'mvn test'
-            }
-        }
-	stage('Deploy To Environment') {
-            steps {
-                sh 'echo Deployment Done'
+                echo "$tag_number"
+                sshagent(['deployment']) {
+                sh 'scp -o StrictHostKeyChecking=no /opt/backup/1.0.$tag_number.jar root@13.233.214.5:~'
+                sh 'ssh -o StrictHostKeyChecking=no root@13.233.214.5 nohup java -jar /root/1.0.$tag_number.jar &'
+                }
             }
         }
     }
