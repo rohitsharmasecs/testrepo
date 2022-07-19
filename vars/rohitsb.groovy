@@ -47,7 +47,7 @@ pipeline {
             steps {
             sh 'sudo mkdir -p /opt/backup'
                    sh 'sudo mv target/my-app-1.0-SNAPSHOT.jar target/1.0.${BUILD_NUMBER}.jar'
-                sh 'sudo cp target/java-jar.${BUILD_NUMBER}.jar /opt/backup/'
+                sh 'sudo cp target/1.0.${BUILD_NUMBER}.jar /opt/backup/'
         }
          }
          stage('Deploy To Environment') {
