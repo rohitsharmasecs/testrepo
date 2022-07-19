@@ -1,0 +1,29 @@
+name: Deployment
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up JDK 11
+      uses: actions/setup-java@v3
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+        cache: maven
+    - name: Enter tag number
+      run: |
+        echo "Please enter tag number"
+        read tag_number
+        echo "$tag_number"
+        scp -o StrictHostKeyChecking=no /opt/backup/1.0.$tag_number.jar root@13.233.214.5:~
+        ssh -o StrictHostKeyChecking=no root@13.233.214.5 nohup java -jar /root/1.0.$tag_number.jar &
+        echo "Deployment done"
