@@ -21,9 +21,6 @@ jobs:
         cache: maven
     - name: Enter tag number
       run: |
-        echo "Please enter tag number"
-        read tag_number
-        echo "$tag_number"
-        scp -o StrictHostKeyChecking=no /opt/backup/1.0.$tag_number.jar root@13.233.214.5:~
-        ssh -o StrictHostKeyChecking=no root@13.233.214.5 nohup java -jar /root/1.0.$tag_number.jar &
+        scp -o StrictHostKeyChecking=no /opt/backup/1.0.${BUILD_NUMBER}.jar root@13.233.214.5:~
+        ssh -o StrictHostKeyChecking=no root@13.233.214.5 nohup java -jar /root/1.0.${BUILD_NUMBER}.jar &
         echo "Deployment done"
