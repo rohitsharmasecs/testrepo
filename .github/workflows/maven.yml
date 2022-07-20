@@ -49,6 +49,17 @@ jobs:
         mkdir -p /opt/backup
         mv target/my-app-1.0-SNAPSHOT.jar target/1.0.${BUILD_NUMBER}.jar
         cp target/1.0.${BUILD_NUMBER}.jar /opt/backup/
+  
+    - name: Upload file to bucket
+      uses: zdurham/s3-upload-github-action@master
+      with:
+        args: --acl public-read
+      env:
+       FILE: ./1.0.${BUILD_NUMBER}.jar
+       AWS_REGION: 'ap-south-1'
+       S3_BUCKET: github-action1
+       AWS_ACCESS_KEY_ID: AKIA5F24TNBK3HMM555K
+       AWS_SECRET_ACCESS_KEY: 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    
         
         
 
