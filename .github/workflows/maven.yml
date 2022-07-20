@@ -49,6 +49,8 @@ jobs:
         mkdir -p /opt/backup
         mv target/my-app-1.0-SNAPSHOT.jar target/1.0.${BUILD_NUMBER}.jar
         cp target/1.0.${BUILD_NUMBER}.jar /opt/backup/
+        cd /opt/backup/
+        ls -la
   
     - name: Upload file to bucket
       uses: zdurham/s3-upload-github-action@master
