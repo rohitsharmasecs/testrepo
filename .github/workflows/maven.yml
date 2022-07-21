@@ -9,6 +9,7 @@ on:
   pull_request:
     branches: [ "master" ]
   workflow_dispatch:
+
 jobs:
   build:
 
@@ -52,6 +53,7 @@ jobs:
        FILE: target/my-app-1.0-SNAPSHOT.jar
        AWS_REGION: 'ap-south-1'
        S3_BUCKET: 'github-action1'
+       S3_KEY: ${{ secrets.S3_KEY }}
        AWS_ACCESS_KEY_ID: 'AKIA5F24TNBK3HMM555K'
        AWS_SECRET_ACCESS_KEY: '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'    
         
