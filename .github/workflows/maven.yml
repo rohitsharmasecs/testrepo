@@ -50,10 +50,7 @@ jobs:
       with:
         args: --acl public-read
       env:
-       FILE: target/my-app-1.0-SNAPSHOT.jar
-       AWS_REGION: 'ap-south-1'
-       S3_BUCKET: 'github-action1'
-       S3_KEY: ${{ secrets.S3_KEY }}
+    
           
         
         
